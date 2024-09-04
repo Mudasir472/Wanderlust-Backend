@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 
 // Mongo connection
-connectdb(process.env.MONGO_URI);
+connectdb('mongodb://localhost:27017/yourDatabaseName');
 
 
 // Session setup
