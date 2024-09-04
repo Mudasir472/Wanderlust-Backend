@@ -48,7 +48,7 @@ router.post("/listing/signup", async (req, res) => {
 router.post("/listing/logout", (req, res) => {
     req.logOut((err) => {
         if (err) {
-            next(err);
+            res.send(err);
         }
         res.clearCookie('connect.sid');
         res.status(200).json({ message: "Logout successful", redirectUrl: "/", });

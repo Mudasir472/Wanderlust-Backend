@@ -37,7 +37,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 const store = MongoStore.create({
-    mongoUrl: "mongodb://127.0.0.1:27017/Mudduelectronics",
+    mongoUrl: process.env.MONGO_URI,
     crypto: {
         secret: process.env.SESSION_SECRET,
     },
