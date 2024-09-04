@@ -29,7 +29,7 @@ app.use(cookieParser());
 
 
 // Mongo connection
-connectdb('mongodb://localhost:27017/wanderlustReact');
+connectdb(process.env.MONGO_URI);
 
 
 // Session setup
