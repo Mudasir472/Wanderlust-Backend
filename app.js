@@ -19,7 +19,7 @@ const reviewRouter = require("./routes/review.router.js")
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: '*', // Replace with the origin of your React app
+    origin: 'http://localhost:5173', // Replace with the origin of your React app
     credentials: true // Allow credentials (cookies)
 }));
 
@@ -74,13 +74,13 @@ app.use("/",listingRouter);
 app.use("/",userRouter);
 app.use("/",reviewRouter)
 
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    next();
-});
+// app.use((req, res, next) => {
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+//     res.setHeader('Access-Control-Allow-Credentials', 'true');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     next();
+// });
 
 
 const port = process.env.PORT

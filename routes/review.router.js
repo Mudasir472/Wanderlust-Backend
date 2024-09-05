@@ -4,13 +4,13 @@ const Listing = require("../modals/listingModal.js");
 const Review = require("../modals/reviewModal.js");
 const { isAuther, isAuthenticated } = require("../Middlewares.js")
 
-router.post("/review/:id", async (req, res) => {
+router.post("/review/:id", isAuthenticated, async (req, res) => {
     const { id } = req.params;
     const { comment, rating } = req.body;
     // Basic validation
-    if (!req.user || !req.user._id) {
-        return res.status(401).json({ msg: "User not authenticated" });
-    }
+    // if (!req.user || !req.user._id) {
+    //     return res.status(401).json({ msg: "User not " });
+    // }
     if (!comment || !rating) {
         return res.status(400).json({ msg: "Comment and rating are required" });
     }
@@ -33,7 +33,7 @@ router.post("/review/:id", async (req, res) => {
     }
 });
 
-router.delete("/:Lid/delReview/:Rid", isAuthenticated, isAuther, async (req, res) => {
+router.delete("/:Lid/delReview/:Rid", isAuthenticated, async (req, res) => {
     const { Lid, Rid } = req.params;
     await Listing.findByIdAndUpdate(Lid, { $pull: { review: Rid } });
     await Review.findByIdAndDelete(Rid);

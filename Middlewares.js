@@ -6,7 +6,7 @@ module.exports.isAuthenticated = (req, res, next) => {
         return next();
     }
     req.session.redirectUrl = req.originalUrl;
-    res.status(401).json({ message: "Unauthorized", redirectUrl: res.locals.redirectUrl || "url" });
+    res.status(401).json({ message: "Unauthorized muddu", redirectUrl: res.locals.redirectUrl || "url" });
 };
 module.exports.isAuther = async(req,res,next)=>{
     let { Rid }=req.params;

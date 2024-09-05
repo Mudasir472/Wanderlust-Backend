@@ -3,7 +3,7 @@ const passport = require("passport")
 const router = express.Router({ mergeParams: true });
 const wrapAsync = require("../utils/wrapAsync");
 const User = require("../modals/userModal");
-const { isAuthenticated } = require("../Middlewares.js")
+const { isAuthenticated } = require("../Middlewares")
 
 const { storage } = require("../cloudConfig")
 const multer = require('multer')

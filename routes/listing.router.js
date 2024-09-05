@@ -17,7 +17,7 @@ router.get("/listings", wrapAsync(async (req, res) => {
         path: 'review',
         populate: {
             path: 'author',
-            select: 'name', // Ensure you're selecting the 'name' field from User
+            select: 'name', 
         }
     });
     res.send(listings)
