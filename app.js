@@ -19,7 +19,7 @@ const reviewRouter = require("./routes/review.router.js")
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
-    origin: '*', // Replace with the origin of your React app
+    origin: 'https://wanderlust-react.vercel.app', // Replace with the origin of your React app
     credentials: true // Allow credentials (cookies)
 }));
 
