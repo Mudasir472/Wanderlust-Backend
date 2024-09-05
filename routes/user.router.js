@@ -41,7 +41,7 @@ router.post("/listing/signup", async (req, res) => {
 
     } catch (e) {
         console.log(e.message);
-        res.status(400).json({ message: "Signup failed", redirectUrl: "/signup", error: e.message });
+        res.status(400).json({ message: e.message, redirectUrl: "/signup", error: e.message });
     }
 })
 
