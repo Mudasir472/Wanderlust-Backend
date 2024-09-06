@@ -33,7 +33,7 @@ router.post("/review/:id", isAuthenticated, async (req, res) => {
     }
 });
 
-router.delete("/:Lid/delReview/:Rid", isAuthenticated, async (req, res) => {
+router.delete("/:Lid/delReview/:Rid", isAuthenticated,isAuther, async (req, res) => {
     const { Lid, Rid } = req.params;
     await Listing.findByIdAndUpdate(Lid, { $pull: { review: Rid } });
     await Review.findByIdAndDelete(Rid);

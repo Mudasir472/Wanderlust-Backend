@@ -6,7 +6,8 @@ const User = require("../modals/userModal");
 const { isAuthenticated } = require("../Middlewares")
 
 const { storage } = require("../cloudConfig")
-const multer = require('multer')
+const multer = require('multer');
+const Listing = require("../modals/listingModal");
 const upload = multer({ storage });
 
 router.post("/listing/login", passport.authenticate('local'), async (req, res) => {
@@ -57,8 +58,23 @@ router.post("/listing/logout", (req, res) => {
 router.get("/listing/profile", isAuthenticated, (req, res) => {
     res.status(200).json({ message: "user profile", user: req.user })
 })
-router.get("/listing/detail",(req, res) => {
+router.get("/listing/detail", (req, res) => {
     res.status(200).json({ message: "user detail", user: req.user })
+})
+
+router.put("/listing/updateuser/:id",isAuthenticated, async(req, res) => {
+    // const {name,username,body}=req.body;
+    const {id} = req.params;
+    await User.findByIdAndUpdate(id, { ...req.body })
+    res.status(200).json({msg:"user update success"});
+})
+router.put("/listing/changepassword/:id",isAuthenticated, async(req, res) => {
+    // const {name,username,body}=req.body;
+    const {id} = req.params;
+    const { PrevPassword, new1Password, new2Password }=req.body;
+    await User.findByIdAndUpdate(id, { password:new2Password });
+    console.log(new2Password)
+    res.status(200).json({msg:"user Password Changed"});
 })
 
 router.post("/listing/changeprofile", isAuthenticated, upload.single("profilePic"), async (req, res) => {
